@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shruti Singh | Product Manager & AI Enthusiast</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #FF0050;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 100px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        #home {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.85;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+            animation: fadeInUp 1.6s ease;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid white;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background: white;
+            color: #667eea;
+        }
+
+        /* About Section */
+        #about {
+            background: white;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #333;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Experience Section */
+        #experience {
+            background: #f8f9fa;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .timeline-item h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .timeline-item .date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .timeline-item li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            color: #555;
+        }
+
+        .timeline-item li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        #projects {
+            background: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .project-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: #f0f0f0;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            border: 2px solid #667eea;
+            color: #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Skills Section */
+        #skills {
+            background: #f8f9fa;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content h2 {
+                font-size: 1.3rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 80px 5%;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="hero-content">
+            <h1>Shruti Singh</h1>
+            <h2>Product Manager | AI Enthusiast | MBA Candidate</h2>
+            <p>Transforming complex business challenges into impactful digital solutions</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/shruti2397singh/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+                <a href="mailto:ssingh89@simon.rochester.edu">Email</a>
+                <a href="https://shrutiverse.lovable.app/" target="_blank">Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hi! I'm Shruti Singh, a Product Manager and MBA Candidate at Simon Business School with a passion for building AI-powered products that solve real-world problems.</p>
+                    <p>With experience at McKinsey & Company and Tata Consultancy Services, I've led cloud transformations, AI initiatives, and enterprise-scale integrations that delivered millions in value.</p>
+                    <p>Currently exploring the intersection of AI, product strategy, and pricing to build the next generation of intelligent products.</p>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">$2.8M+</div>
+                        <div class="stat-label">Savings Delivered</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3.8</div>
+                        <div class="stat-label">MBA GPA</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Integrations Led</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>McKinsey & Company</h3>
+                    <h4>Product Manager – Cloud, Data & AI</h4>
+                    <div class="date">October 2024 – June 2025</div>
+                    <ul>
+                        <li>Led AI-enabled multi-tenancy development delivering $2.8M in savings and 20% profit margin improvement</li>
+                        <li>Defined product vision and GTM strategy improving platform performance by 30%</li>
+                        <li>Executed payroll transformation for 20,000+ employees across USA, Canada, and Mexico</li>
+                        <li>Mentored 5+ analysts, reducing recurring incidents by 35%</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>McKinsey & Company</h3>
+                    <h4>Product Analyst – SAP</h4>
+                    <div class="date">September 2022 – September 2024</div>
+                    <ul>
+                        <li>Defined MVP for AI-powered monitoring tool reducing manual exceptions by 60%</li>
+                        <li>Delivered 30+ integrations with 100% data accuracy supporting critical finance workflows</li>
+                        <li>Launched functional testing automation reducing QA effort by 60%</li>
+                        <li>Saved $500K through SAP UI Masking and Data Protection delivery</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Tata Consultancy Services</h3>
+                    <h4>Technical Product Associate – SAP Solutions</h4>
+                    <div class="date">November 2020 – September 2022</div>
+                    <ul>
+                        <li>Oversaw 50+ SAP supply chain integrations for Fortune 500 pharma clients</li>
+                        <li>Directed 24/7 production support for 100+ live interfaces, improving SLA compliance by 25%</li>
+                        <li>Spearheaded PGP-encrypted payroll integration securing 50,000+ employee records</li>
+                        <li>Reduced IT costs by 15% and optimized resource allocation by 20%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">⚡</div>
+                    <div class="project-content">
+                        <h3>ContentIQ</h3>
+                        <p>AI-powered social media assistant that predicts content virality and generates optimized captions for TikTok and Instagram creators.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Google Gemini AI</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">FileReader API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="http://localhost:3000" class="project-btn btn-primary" target="_blank">Live Demo</a>
+                            <a href="https://github.com/yourusername/contentiq" class="project-btn btn-secondary" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">💬</div>
+                    <div class="project-content">
+                        <h3>AI Portfolio Website</h3>
+                        <p>Personal portfolio with embedded AI chatbot that answers questions about my background, experience, and projects using natural language.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Claude AI</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">Anthropic API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://shrutiverse.lovable.app/" class="project-btn btn-primary" target="_blank">Live Demo</a>
+                            <a href="https://github.com/yourusername/portfolio" class="project-btn btn-secondary" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">📊</div>
+                    <div class="project-content">
+                        <h3>SAP Cloud Transformation</h3>
+                        <p>Led multi-tenancy development and SAP integration delivering $2.8M in cost savings and 20% profit margin improvement for enterprise clients.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">SAP HANA</span>
+                            <span class="tech-tag">AI/ML</span>
+                            <span class="tech-tag">Cloud Architecture</span>
+                            <span class="tech-tag">SuccessFactors</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#contact" class="project-btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Product Management</h3>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>Product Strategy</span><span>95%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>Roadmap Planning</span><span>90%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>Agile/Scrum</span><span>92%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 92%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>Stakeholder Mgmt</span><span>93%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 93%"></div></div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>AI & Development</h3>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>Python</span><span>85%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>JavaScript/React</span><span>88%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>AI/ML (Gemini, GPT)</span><span>90%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>SQL</span><span>87%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 87%"></div></div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Cloud & Tools</h3>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>SAP (HANA, S/4)</span><span>93%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 93%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>ServiceNow</span><span>85%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>Jira/Miro</span><span>90%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>Tableau/Excel</span><span>88%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Let's Connect</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 3rem;">I'm always open to discussing product management opportunities, AI projects, or just connecting!</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i>📧</i>
+                    <h3>Email</h3>
+                    <a href="mailto:ssingh89@simon.rochester.edu">ssingh89@simon.rochester.edu</a>
+                </div>
+                <div class="contact-item">
+                    <i>💼</i>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/shruti2397singh/" target="_blank">linkedin.com/in/shruti2397singh</a>
+                </div>
+                <div class="contact-item">
+                    <i>📱</i>
+                    <h3>Phone</h3>
+                    <a href="tel:5854348593">(585) 434-8593</a>
+                </div>
+                <div class="contact-item">
+                    <i>🌐</i>
+                    <h3>Portfolio</h3>
+                    <a href="https://shrutiverse.lovable.app/" target="_blank">shrutiverse.lovable.app</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Shruti Singh. Built with ❤️ using HTML & CSS. Make every second count 🚀</p>
+    </footer>
+</body>
+</html>
