@@ -66,9 +66,23 @@
 
         /* Hero Section */
         #home {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%), 
+                        url('images/hero-bg.jpg') center/cover no-repeat;
             color: white;
             text-align: center;
+            position: relative;
+        }
+
+        /* Profile Picture */
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin: 0 auto 2rem;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease;
         }
 
         .hero-content h1 {
@@ -512,6 +526,7 @@
     <!-- Home Section -->
     <section id="home">
         <div class="hero-content">
+            <img src="images/profile.jpg" alt="Shruti Singh" class="profile-pic">
             <h1>Shruti Singh</h1>
             <h2>Product Manager | AI Enthusiast | MBA Candidate</h2>
             <p>Transforming complex business challenges into impactful digital solutions</p>
@@ -734,7 +749,7 @@
                 <div class="contact-item">
                     <i>📧</i>
                     <h3>Email</h3>
-                    <a href="mailto:ssingh89@simon.rochester.edu">ssingh89@simon.rochester.edu</a>
+                    <a href="/cdn-cgi/l/email-protection#f685859f98919ececfb6859f9b9998d88499959e9385829384d8939283"><span class="__cf_email__" data-cfemail="4b383822252c2373720b382226242565392428232e383f2e39652e2f3e">[email&#160;protected]</span></a>
                 </div>
                 <div class="contact-item">
                     <i>💼</i>
@@ -751,13 +766,4 @@
                     <h3>Portfolio</h3>
                     <a href="https://shrutiverse.lovable.app/" target="_blank">shrutiverse.lovable.app</a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Shruti Singh. Built with ❤️ using HTML & CSS. Make every second count 🚀</p>
-    </footer>
-</body>
-</html>
+            </d
