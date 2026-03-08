@@ -1,769 +1,858 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shruti Singh | Product Manager & AI Enthusiast</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f5f5f5;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        nav a:hover {
-            color: #FF0050;
-        }
-
-        /* Sections */
-        section {
-            min-height: 100vh;
-            padding: 100px 5%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .container {
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        /* Hero Section */
-        #home {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%), 
-                        url('images/hero-bg.jpg') center/cover no-repeat;
-            color: white;
-            text-align: center;
-            position: relative;
-        }
-
-        /* Profile Picture */
-        .profile-pic {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 5px solid white;
-            margin: 0 auto 2rem;
-            object-fit: cover;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-content h2 {
-            font-size: 1.8rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1.2s ease;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.85;
-            animation: fadeInUp 1.4s ease;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-top: 2rem;
-            animation: fadeInUp 1.6s ease;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: transform 0.3s;
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            border: 2px solid white;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-5px);
-            background: white;
-            color: #667eea;
-        }
-
-        /* About Section */
-        #about {
-            background: white;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            color: #333;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 2px;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1.5rem;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        /* Experience Section */
-        #experience {
-            background: #f8f9fa;
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .timeline-item {
-            background: white;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            position: relative;
-            transition: transform 0.3s;
-        }
-
-        .timeline-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .timeline-item h3 {
-            color: #667eea;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-item h4 {
-            color: #333;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .timeline-item .date {
-            color: #999;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .timeline-item ul {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .timeline-item li {
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-            color: #555;
-        }
-
-        .timeline-item li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        /* Projects Section */
-        #projects {
-            background: white;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            border-color: #667eea;
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .project-content p {
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-tag {
-            background: #f0f0f0;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-btn {
-            padding: 0.7rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            border: 2px solid #667eea;
-            color: #667eea;
-        }
-
-        .btn-secondary:hover {
-            background: #667eea;
-            color: white;
-        }
-
-        /* Skills Section */
-        #skills {
-            background: #f8f9fa;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .skill-category h3 {
-            color: #667eea;
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-        }
-
-        .skill-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .skill-bar {
-            height: 10px;
-            background: #e0e0e0;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 5px;
-            transition: width 1s ease;
-        }
-
-        /* Contact Section */
-        #contact {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-item {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s;
-        }
-
-        .contact-item:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.15);
-        }
-
-        .contact-item i {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-item h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-item a {
-            color: white;
-            text-decoration: none;
-        }
-
-        /* Footer */
-        footer {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-content h2 {
-                font-size: 1.3rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-            }
-
-            nav ul {
-                gap: 1rem;
-                flex-wrap: wrap;
-                padding: 0 1rem;
-            }
-
-            section {
-                padding: 80px 5%;
-            }
-        }
-
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shruti Singh — Product & Strategy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f4ef;
+      --bg2: #efe9df;
+      --fg: #1a1714;
+      --accent: #8b5e3c;
+      --accent2: #b07d54;
+      --muted: rgba(26,23,20,0.42);
+      --panel: rgba(251,248,243,0.92);
+      --border: rgba(139,94,60,0.18);
+      --border-strong: rgba(139,94,60,0.35);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Jost', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+    }
+
+    /* ── Background ── */
+    #bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    /* Subtle grain texture */
+    #bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      opacity: 0.4;
+    }
+    /* Soft ink blot shapes */
+    #bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 40% at 10% 15%, rgba(176,125,84,0.09) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 92% 80%, rgba(139,94,60,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 30% at 55% 95%, rgba(176,125,84,0.05) 0%, transparent 70%);
+    }
+
+    /* Decorative lines */
+    .deco-line {
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .deco-line.tl {
+      top: 2.5rem; left: 2.5rem;
+      width: 80px; height: 80px;
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+    .deco-line.br {
+      bottom: 2.5rem; right: 2.5rem;
+      width: 80px; height: 80px;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
+
+    /* ── Wrapper ── */
+    #wrapper {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    /* ── Header ── */
+    #header {
+      text-align: center;
+      transition: transform 0.55s cubic-bezier(0.4,0,0.2,1),
+                  opacity 0.45s ease,
+                  filter 0.45s ease;
+    }
+    #header.is-article-visible {
+      transform: scale(0.94) translateY(-1.5rem);
+      opacity: 0.1;
+      filter: blur(4px);
+      pointer-events: none;
+    }
+
+    .monogram {
+      width: 6rem;
+      height: 6rem;
+      margin: 0 auto 2rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .monogram svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 2px 14px rgba(139,94,60,0.2));
+      transition: filter 0.3s ease;
+    }
+    .monogram:hover svg {
+      filter: drop-shadow(0 4px 20px rgba(139,94,60,0.35));
+    }
+
+    #header h1 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      letter-spacing: 0.02em;
+      line-height: 1.15;
+      color: var(--fg);
+      margin-bottom: 0.6rem;
+    }
+    #header .tagline {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 0.78rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    #header .tagline span {
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--border-strong);
+      vertical-align: middle;
+      margin: 0 0.6rem;
+    }
+    #header .headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(0.88rem, 2vw, 1.05rem);
+      color: var(--accent2);
+      margin-bottom: 2.2rem;
+      letter-spacing: 0.01em;
+      opacity: 0.85;
+      position: relative;
+      display: inline-block;
+      padding: 0 1rem;
+    }
+    #header .headline::before,
+    #header .headline::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 28px;
+      height: 1px;
+      background: var(--border-strong);
+      opacity: 0.6;
+    }
+    #header .headline::before { right: 100%; margin-right: -0.8rem; }
+    #header .headline::after  { left: 100%;  margin-left: -0.8rem; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 0.85; transform: translateY(0); }
+    }
+    #header .headline { animation: fadeUp 1s ease 0.4s both; }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.5);
+    }
+    nav a {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.7rem 1.5rem;
+      border-right: 1px solid var(--border);
+      transition: all 0.22s ease;
+      position: relative;
+    }
+    nav a:last-child { border-right: none; }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.22s ease;
+    }
+    nav a:hover { color: var(--accent); background: rgba(139,94,60,0.04); }
+    nav a:hover::after { transform: scaleX(1); }
+    nav a.active { color: var(--accent); background: rgba(139,94,60,0.06); }
+    nav a.active::after { transform: scaleX(1); }
+
+    /* ── Social ── */
+    .social-links {
+      margin-top: 2rem;
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .social-links a {
+      width: 2.6rem;
+      height: 2.6rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.22s ease;
+      position: relative;
+    }
+    .social-links a svg {
+      width: 1.35rem;
+      height: 1.35rem;
+      transition: transform 0.22s ease;
+    }
+    .social-links a:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.13); }
+    .social-links a:hover svg { transform: scale(1.08); }
+
+    /* LinkedIn */
+    .social-links a.s-linkedin { background: #0077B5; }
+    /* GitHub */
+    .social-links a.s-github   { background: #24292e; }
+    /* Email */
+    .social-links a.s-email    { background: #EA4335; }
+    /* PDF */
+    .social-links a.s-pdf      { background: #8b5e3c; }
+
+    /* ── Modal system ── */
+    #main {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      pointer-events: none;
+    }
+
+    article {
+      position: absolute;
+      background: var(--panel);
+      backdrop-filter: blur(20px) saturate(1.2);
+      -webkit-backdrop-filter: blur(20px) saturate(1.2);
+      border: 1px solid var(--border-strong);
+      border-radius: 3px;
+      width: min(700px, 100%);
+      max-height: 82vh;
+      overflow-y: auto;
+      padding: 3rem 3.8rem;
+      transform: translateY(24px) scale(0.98);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.48s cubic-bezier(0.34,1.4,0.64,1), opacity 0.35s ease;
+      box-shadow: 0 8px 60px rgba(139,94,60,0.08), 0 2px 16px rgba(0,0,0,0.06);
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+    article::-webkit-scrollbar { width: 3px; }
+    article::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    article.active {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Article typography */
+    article h2 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 2rem;
+      letter-spacing: 0.02em;
+      color: var(--fg);
+      margin-bottom: 0.3rem;
+    }
+    .subtitle {
+      font-size: 0.68rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+    article p {
+      font-size: 0.93rem;
+      line-height: 1.9;
+      color: rgba(26,23,20,0.72);
+      margin-bottom: 1.1rem;
+    }
+    .divider {
+      width: 2.5rem;
+      height: 1px;
+      background: var(--accent);
+      margin: 1.8rem 0;
+      opacity: 0.4;
+    }
+
+    /* Close */
+    .close {
+      position: absolute;
+      top: 1.4rem;
+      right: 1.4rem;
+      width: 1.8rem;
+      height: 1.8rem;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.62rem;
+      transition: all 0.2s;
+    }
+    .close:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(139,94,60,0.05);
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.2rem 0;
+    }
+    .skill-tag {
+      padding: 0.38rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      background: rgba(255,255,255,0.6);
+      transition: all 0.18s;
+    }
+    .skill-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(139,94,60,0.05);
+    }
+
+    /* Projects */
+    .project-list { margin: 1.5rem 0; }
+    .project-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 1rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .project-item:first-child { border-top: 1px solid var(--border); }
+    .project-item:hover { padding-left: 0.5rem; }
+    .proj-tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.35rem;
+    }
+    .project-item h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: var(--fg);
+      margin-bottom: 0.3rem;
+    }
+    .project-item p {
+      font-size: 0.84rem;
+      line-height: 1.65;
+      color: var(--muted);
+      margin: 0;
+    }
+    .proj-arrow {
+      color: var(--border-strong);
+      font-size: 0.7rem;
+      padding-top: 0.3rem;
+      transition: all 0.2s;
+    }
+    .project-item:hover .proj-arrow {
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    /* Resume / Timeline */
+    .tl-section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 1.8rem 0 1rem;
+    }
+    .timeline { position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .tl-item {
+      padding: 0 0 1.8rem 1.6rem;
+      position: relative;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -3px;
+      top: 6px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+    .tl-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+    .tl-item h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--fg);
+    }
+    .tl-year {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      background: rgba(139,94,60,0.08);
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .tl-org {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.4rem;
+    }
+    .tl-item p {
+      font-size: 0.84rem;
+      line-height: 1.65;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Contact form */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+    .contact-grid .full { grid-column: 1 / -1; }
+    .contact-grid input,
+    .contact-grid textarea {
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 0.8rem 1rem;
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 0.86rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .contact-grid input:focus,
+    .contact-grid textarea:focus { border-color: var(--accent); }
+    .contact-grid input::placeholder,
+    .contact-grid textarea::placeholder { color: var(--muted); }
+    .contact-grid textarea { resize: vertical; min-height: 100px; }
+    .btn {
+      margin-top: 0.4rem;
+      padding: 0.8rem 2.2rem;
+      background: var(--accent);
+      border: 1px solid var(--accent);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: all 0.22s;
+    }
+    .btn:hover { background: var(--accent2); border-color: var(--accent2); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--accent);
+    }
+    .btn-ghost:hover { background: rgba(139,94,60,0.08); color: var(--accent); }
+
+    /* Overlay */
+    #overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      background: rgba(247,244,239,0);
+      pointer-events: none;
+      transition: background 0.4s;
+    }
+    #overlay.active {
+      background: rgba(247,244,239,0.55);
+      pointer-events: all;
+      backdrop-filter: blur(2px);
+    }
+
+    /* Footer */
+    #footer {
+      position: fixed;
+      bottom: 1.4rem;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 0.64rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(26,23,20,0.2);
+      z-index: 1;
+    }
+
+    @media (max-width: 580px) {
+      article { padding: 2rem 1.4rem; }
+      nav a { padding: 0.7rem 1rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-grid .full { grid-column: 1; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
+
+<div id="bg"></div>
+<div class="deco-line tl"></div>
+<div class="deco-line br"></div>
+<div id="overlay"></div>
+
+<div id="wrapper">
+  <div id="header">
+    <div class="monogram">
+      <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer ring -->
+        <circle cx="48" cy="48" r="46" stroke="#8b5e3c" stroke-width="0.8" opacity="0.4"/>
+        <!-- Inner ring -->
+        <circle cx="48" cy="48" r="39" stroke="#8b5e3c" stroke-width="0.5" opacity="0.25"/>
+        <!-- Warm fill -->
+        <circle cx="48" cy="48" r="38" fill="rgba(251,248,243,0.85)"/>
+        <!-- Decorative 8-point star / compass rose -->
+        <g transform="translate(48,48)" stroke="#8b5e3c" stroke-width="0.7" opacity="0.35">
+          <line x1="0" y1="-34" x2="0" y2="34"/>
+          <line x1="-34" y1="0" x2="34" y2="0"/>
+          <line x1="-24" y1="-24" x2="24" y2="24"/>
+          <line x1="24" y1="-24" x2="-24" y2="24"/>
+        </g>
+        <!-- Small diamond center ornament -->
+        <polygon points="48,36 52,48 48,60 44,48" fill="none" stroke="#b07d54" stroke-width="0.9" opacity="0.5"/>
+        <!-- Elegant S letterform built from paths -->
+        <text x="48" y="56" text-anchor="middle"
+          font-family="Playfair Display, Georgia, serif"
+          font-size="26" font-weight="400"
+          fill="#8b5e3c" letter-spacing="2">S</text>
+        <!-- Top dot ornament -->
+        <circle cx="48" cy="14" r="1.8" fill="#b07d54" opacity="0.6"/>
+        <!-- Bottom dot ornament -->
+        <circle cx="48" cy="82" r="1.8" fill="#b07d54" opacity="0.6"/>
+        <!-- Side dot ornaments -->
+        <circle cx="14" cy="48" r="1.2" fill="#8b5e3c" opacity="0.4"/>
+        <circle cx="82" cy="48" r="1.2" fill="#8b5e3c" opacity="0.4"/>
+        <!-- Corner diamonds -->
+        <polygon points="48,5 50,8 48,11 46,8"  fill="#b07d54" opacity="0.45"/>
+        <polygon points="48,85 50,88 48,91 46,88" fill="#b07d54" opacity="0.45"/>
+      </svg>
+    </div>
+    <h1>Shruti Singh</h1>
+    <p class="tagline">Product <span></span> Strategy</p>
+    <p class="headline">Turned debugging code into debugging user problems. Now I do both.</p>
     <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#resume" class="nav-link">Résumé</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </nav>
+    <div class="social-links">
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com/in/shrutisingh" class="s-linkedin" title="LinkedIn" target="_blank">
+        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      </a>
+      <!-- Email / Gmail -->
+      <a href="mailto:hello@shrutisingh.com" class="s-email" title="Email" target="_blank">
+        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+        </svg>
+      </a>
+      <!-- GitHub -->
+      <a href="https://github.com/shrutisingh2397-cell" class="s-github" title="GitHub" target="_blank">
+        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+        </svg>
+      </a>
+      <!-- PDF Resume -->
+      <a href="#" class="s-pdf" title="Resume PDF" target="_blank">
+        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8.5 15.5c-.3 0-.5-.1-.7-.2l.2-.7c.1.1.3.1.4.1.4 0 .6-.3.6-.8v-2.4H10v2.4c0 1-.5 1.6-1.5 1.6zm3.5 0h-1v-4h1.5c.9 0 1.5.5 1.5 1.3s-.6 1.2-1.5 1.2H12v1.5zm3.5 0h-1v-4h1c1.1 0 1.8.7 1.8 2s-.8 2-1.8 2zm-3.5-2.5h.4c.4 0 .6-.2.6-.5s-.2-.5-.6-.5H12v1zm3.5 1.7c.5 0 .8-.4.8-1.2s-.3-1.3-.8-1.3H15v2.5h.5z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
 
-    <!-- Home Section -->
-    <section id="home">
-        <div class="hero-content">
-            <img src="images/profile.jpg" alt="Shruti Singh" class="profile-pic">
-            <h1>Shruti Singh</h1>
-            <h2>Product Manager | AI Enthusiast | MBA Candidate</h2>
-            <p>Transforming complex business challenges into impactful digital solutions</p>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/shruti2397singh/" target="_blank">LinkedIn</a>
-                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-                <a href="mailto:ssingh89@simon.rochester.edu">Email</a>
-                <a href="https://shrutiverse.lovable.app/" target="_blank">Portfolio</a>
-            </div>
+<div id="main">
+
+  <!-- About -->
+  <article id="about">
+    <button class="close"><i class="fas fa-times"></i></button>
+    <h2>About</h2>
+    <div class="subtitle">A little about me</div>
+    <p>
+      I turned debugging code into debugging user problems — and now I do both. 
+      I'm <strong>Shruti Singh</strong>, a product strategist who started in engineering 
+      and never stopped asking <em style="color:var(--accent2)">"but why does the user need this?"</em>
+    </p>
+    <p>
+      I thrive in ambiguous problem spaces, turning complex challenges into clear product direction.
+      Whether it's defining a 0→1 strategy or scaling an existing product, I bring both analytical 
+      rigor and creative intuition to the table.
+    </p>
+    <div class="divider"></div>
+    <div class="subtitle">Areas of Expertise</div>
+    <div class="skills-grid">
+      <div class="skill-tag">Product Strategy</div>
+      <div class="skill-tag">Go-to-Market</div>
+      <div class="skill-tag">User Research</div>
+      <div class="skill-tag">Roadmapping</div>
+      <div class="skill-tag">Data Analytics</div>
+      <div class="skill-tag">A/B Testing</div>
+      <div class="skill-tag">Stakeholder Mgmt</div>
+      <div class="skill-tag">OKRs & Metrics</div>
+      <div class="skill-tag">SQL</div>
+      <div class="skill-tag">Figma</div>
+      <div class="skill-tag">Competitive Intel</div>
+      <div class="skill-tag">Agile / Scrum</div>
+    </div>
+    <div class="divider"></div>
+    <p>
+      Outside of work I enjoy reading about behavioral economics, long hikes, and finding the 
+      best chai in every city I visit. Always open to interesting conversations — feel free to say hi.
+    </p>
+  </article>
+
+  <!-- Projects -->
+  <article id="projects">
+    <button class="close"><i class="fas fa-times"></i></button>
+    <h2>Projects</h2>
+    <div class="subtitle">Selected work</div>
+    <p>A curated set of initiatives I've led or contributed to across product and strategy.</p>
+
+    <div class="project-list">
+      <div class="project-item">
+        <div>
+          <div class="proj-tag">Product · 2024</div>
+          <h3>Growth Activation Overhaul</h3>
+          <p>Redesigned the user onboarding funnel end-to-end, resulting in a 38% improvement in D7 retention across 2M+ users.</p>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Hi! I'm Shruti Singh, a Product Manager and MBA Candidate at Simon Business School with a passion for building AI-powered products that solve real-world problems.</p>
-                    <p>With experience at McKinsey & Company and Tata Consultancy Services, I've led cloud transformations, AI initiatives, and enterprise-scale integrations that delivered millions in value.</p>
-                    <p>Currently exploring the intersection of AI, product strategy, and pricing to build the next generation of intelligent products.</p>
-                </div>
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-number">$2.8M+</div>
-                        <div class="stat-label">Savings Delivered</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">3.8</div>
-                        <div class="stat-label">MBA GPA</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Integrations Led</div>
-                    </div>
-                </div>
-            </div>
+        <div class="proj-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+      <div class="project-item">
+        <div>
+          <div class="proj-tag">Strategy · 2023</div>
+          <h3>Market Expansion Playbook</h3>
+          <p>Led competitive landscape analysis and go-to-market strategy for entry into two new Southeast Asian markets.</p>
         </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>McKinsey & Company</h3>
-                    <h4>Product Manager – Cloud, Data & AI</h4>
-                    <div class="date">October 2024 – June 2025</div>
-                    <ul>
-                        <li>Led AI-enabled multi-tenancy development delivering $2.8M in savings and 20% profit margin improvement</li>
-                        <li>Defined product vision and GTM strategy improving platform performance by 30%</li>
-                        <li>Executed payroll transformation for 20,000+ employees across USA, Canada, and Mexico</li>
-                        <li>Mentored 5+ analysts, reducing recurring incidents by 35%</li>
-                    </ul>
-                </div>
-
-                <div class="timeline-item">
-                    <h3>McKinsey & Company</h3>
-                    <h4>Product Analyst – SAP</h4>
-                    <div class="date">September 2022 – September 2024</div>
-                    <ul>
-                        <li>Defined MVP for AI-powered monitoring tool reducing manual exceptions by 60%</li>
-                        <li>Delivered 30+ integrations with 100% data accuracy supporting critical finance workflows</li>
-                        <li>Launched functional testing automation reducing QA effort by 60%</li>
-                        <li>Saved $500K through SAP UI Masking and Data Protection delivery</li>
-                    </ul>
-                </div>
-
-                <div class="timeline-item">
-                    <h3>Tata Consultancy Services</h3>
-                    <h4>Technical Product Associate – SAP Solutions</h4>
-                    <div class="date">November 2020 – September 2022</div>
-                    <ul>
-                        <li>Oversaw 50+ SAP supply chain integrations for Fortune 500 pharma clients</li>
-                        <li>Directed 24/7 production support for 100+ live interfaces, improving SLA compliance by 25%</li>
-                        <li>Spearheaded PGP-encrypted payroll integration securing 50,000+ employee records</li>
-                        <li>Reduced IT costs by 15% and optimized resource allocation by 20%</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="proj-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+      <div class="project-item">
+        <div>
+          <div class="proj-tag">0→1 Product · 2023</div>
+          <h3>B2B Dashboard Launch</h3>
+          <p>Defined product vision and shipped an analytics dashboard from scratch — 0 to 500 enterprise clients in 6 months.</p>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">⚡</div>
-                    <div class="project-content">
-                        <h3>ContentIQ</h3>
-                        <p>AI-powered social media assistant that predicts content virality and generates optimized captions for TikTok and Instagram creators.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Google Gemini AI</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">FileReader API</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="http://localhost:3000" class="project-btn btn-primary" target="_blank">Live Demo</a>
-                            <a href="https://github.com/yourusername/contentiq" class="project-btn btn-secondary" target="_blank">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">💬</div>
-                    <div class="project-content">
-                        <h3>AI Portfolio Website</h3>
-                        <p>Personal portfolio with embedded AI chatbot that answers questions about my background, experience, and projects using natural language.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Claude AI</span>
-                            <span class="tech-tag">Tailwind CSS</span>
-                            <span class="tech-tag">Anthropic API</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://shrutiverse.lovable.app/" class="project-btn btn-primary" target="_blank">Live Demo</a>
-                            <a href="https://github.com/yourusername/portfolio" class="project-btn btn-secondary" target="_blank">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">📊</div>
-                    <div class="project-content">
-                        <h3>SAP Cloud Transformation</h3>
-                        <p>Led multi-tenancy development and SAP integration delivering $2.8M in cost savings and 20% profit margin improvement for enterprise clients.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">SAP HANA</span>
-                            <span class="tech-tag">AI/ML</span>
-                            <span class="tech-tag">Cloud Architecture</span>
-                            <span class="tech-tag">SuccessFactors</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#contact" class="project-btn btn-primary">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="proj-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+      <div class="project-item">
+        <div>
+          <div class="proj-tag">Research · 2022</div>
+          <h3>Pricing Strategy Research</h3>
+          <p>Conducted mixed-methods research with 200+ users to revamp pricing tiers, increasing avg. revenue per user by 22%.</p>
         </div>
-    </section>
+        <div class="proj-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+    </div>
+    <p style="font-size:0.8rem; color:var(--muted); margin-top:0.8rem">
+      More detailed case studies available on request.
+    </p>
+  </article>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Product Management</h3>
-                    <div class="skill-item">
-                        <div class="skill-name"><span>Product Strategy</span><span>95%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name"><span>Roadmap Planning</span><span>90%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name"><span>Agile/Scrum</span><span>92%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 92%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name"><span>Stakeholder Mgmt</span><span>93%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 93%"></div></div>
-                    </div>
-                </div>
+  <!-- Résumé -->
+  <article id="resume">
+    <button class="close"><i class="fas fa-times"></i></button>
+    <h2>Résumé</h2>
+    <div class="subtitle">Experience &amp; Education</div>
 
-                <div class="skill-category">
-                    <h3>AI & Development</h3>
-                    <div class="skill-item">
-                        <div class="skill-name"><span>Python</span><span>85%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name"><span>JavaScript/React</span><span>88%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name"><span>AI/ML (Gemini, GPT)</span><span>90%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name"><span>SQL</span><span>87%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 87%"></div></div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Cloud & Tools</h3>
-                    <div class="skill-item">
-                        <div class="skill-name"><span>SAP (HANA, S/4)</span><span>93%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 93%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name"><span>ServiceNow</span><span>85%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name"><span>Jira/Miro</span><span>90%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name"><span>Tableau/Excel</span><span>88%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div>
-                    </div>
-                </div>
-            </div>
+    <div class="tl-section-label">Experience</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-meta">
+          <h3>Senior Product Manager</h3>
+          <span class="tl-year">2022 – Present</span>
         </div>
-    </section>
+        <div class="tl-org">Company Name · Location</div>
+        <p>Led cross-functional teams of 12 to define and execute product strategy. Owned the full roadmap for a core growth surface serving 5M+ users.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-meta">
+          <h3>Product Manager</h3>
+          <span class="tl-year">2020 – 2022</span>
+        </div>
+        <div class="tl-org">Previous Company · Location</div>
+        <p>Managed discovery, prioritization, and delivery cycles for B2C and B2B product lines. Partnered closely with design, data, and engineering.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-meta">
+          <h3>Strategy Analyst</h3>
+          <span class="tl-year">2018 – 2020</span>
+        </div>
+        <div class="tl-org">Consulting Firm · Location</div>
+        <p>Delivered strategic recommendations for Fortune 500 clients across tech, retail, and financial services verticals.</p>
+      </div>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">Let's Connect</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 3rem;">I'm always open to discussing product management opportunities, AI projects, or just connecting!</p>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i>📧</i>
-                    <h3>Email</h3>
-                    <a href="/cdn-cgi/l/email-protection#f685859f98919ececfb6859f9b9998d88499959e9385829384d8939283"><span class="__cf_email__" data-cfemail="4b383822252c2373720b382226242565392428232e383f2e39652e2f3e">[email&#160;protected]</span></a>
-                </div>
-                <div class="contact-item">
-                    <i>💼</i>
-                    <h3>LinkedIn</h3>
-                    <a href="https://www.linkedin.com/in/shruti2397singh/" target="_blank">linkedin.com/in/shruti2397singh</a>
-                </div>
-                <div class="contact-item">
-                    <i>📱</i>
-                    <h3>Phone</h3>
-                    <a href="tel:5854348593">(585) 434-8593</a>
-                </div>
-                <div class="contact-item">
-                    <i>🌐</i>
-                    <h3>Portfolio</h3>
-                    <a href="https://shrutiverse.lovable.app/" target="_blank">shrutiverse.lovable.app</a>
-                </div>
-            </d
+    <div class="tl-section-label">Education</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-meta">
+          <h3>MBA</h3>
+          <span class="tl-year">2016 – 2018</span>
+        </div>
+        <div class="tl-org">University Name · City</div>
+        <p>Concentration in Strategy & Innovation. Case competition finalist.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-meta">
+          <h3>B.Tech, Computer Science</h3>
+          <span class="tl-year">2012 – 2016</span>
+        </div>
+        <div class="tl-org">University Name · City</div>
+        <p>Dean's List. Minor in Economics.</p>
+      </div>
+    </div>
+
+    <button class="btn btn-ghost" style="margin-top:0.8rem">
+      <i class="fas fa-download" style="margin-right:0.5rem"></i>Download CV
+    </button>
+  </article>
+
+  <!-- Contact -->
+  <article id="contact">
+    <button class="close"><i class="fas fa-times"></i></button>
+    <h2>Contact</h2>
+    <div class="subtitle">Let's connect</div>
+    <p>
+      Interested in collaborating, have a role in mind, or just want to talk product?
+      I'd love to hear from you.
+    </p>
+    <div class="contact-grid">
+      <input type="text" placeholder="Your name" />
+      <input type="email" placeholder="Email address" />
+      <input type="text" class="full" placeholder="Subject" />
+      <textarea class="full" placeholder="Your message…"></textarea>
+      <div class="full"><button class="btn">Send Message</button></div>
+    </div>
+    <div class="divider"></div>
+    <p style="font-size:0.82rem">
+      Or email me directly at
+      <a href="/cdn-cgi/l/email-protection#8de5e8e1e1e2cdfee5fff8f9e4fee4e3eae5a3eee2e0" style="color:var(--accent); text-decoration:none; border-bottom:1px solid var(--border)"><span class="__cf_email__" data-cfemail="5038353c3c3f1023382225243923393e37387e333f3d">[email&#160;protected]</span></a>
+    </p>
+  </article>
+
+</div>
+
+<div id="footer">Shruti Singh &nbsp;·&nbsp; Product &amp; Strategy</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const header  = document.getElementById('header');
+  const overlay = document.getElementById('overlay');
+  const navLinks = document.querySelectorAll('.nav-link');
+  let current = null;
+
+  function open(id) {
+    close();
+    const art = document.getElementById(id);
+    if (!art) return;
+    current = art;
+    art.classList.add('active');
+    header.classList.add('is-article-visible');
+    overlay.classList.add('active');
+    navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+  }
+
+  function close() {
+    if (current) { current.classList.remove('active'); current = null; }
+    header.classList.remove('is-article-visible');
+    overlay.classList.remove('active');
+    navLinks.forEach(l => l.classList.remove('active'));
+  }
+
+  navLinks.forEach(l => {
+    l.addEventListener('click', e => {
+      e.preventDefault();
+      const id = l.getAttribute('href').slice(1);
+      current && current.id === id ? close() : open(id);
+    });
+  });
+
+  docum
