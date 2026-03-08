@@ -12,559 +12,202 @@
 
     :root {
       --bg: #f7f4ef;
-      --bg2: #efe9df;
       --fg: #1a1714;
       --accent: #8b5e3c;
       --accent2: #b07d54;
       --muted: rgba(26,23,20,0.42);
-      --panel: rgba(251,248,243,0.92);
+      --panel: rgba(251,248,243,0.98);
       --border: rgba(139,94,60,0.18);
       --border-strong: rgba(139,94,60,0.35);
       --font-display: 'Playfair Display', Georgia, serif;
       --font-body: 'Jost', sans-serif;
     }
 
-    html, body {
-      height: 100%;
-      overflow: hidden;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: var(--font-body);
-    }
+    html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(--fg); font-family: var(--font-body); }
 
-    /* ── Background ── */
+    /* Background */
     #bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background: var(--bg);
-      overflow: hidden;
+      position: fixed; inset: 0; z-index: 0;
+      background-color: var(--bg);
+      background-image: url('bg.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      background-repeat: no-repeat;
     }
-    /* Subtle grain texture */
+    /* Faded cream wash over the photo — keeps it subtle & minimal */
     #bg::before {
       content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      background-size: 200px 200px;
-      opacity: 0.4;
+      position: absolute; inset: 0;
+      background: rgba(247, 244, 239, 0.78);
     }
-    /* Soft ink blot shapes */
+    /* Soft warm vignette on top */
     #bg::after {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 55% 40% at 10% 15%, rgba(176,125,84,0.09) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 50% at 92% 80%, rgba(139,94,60,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 30% 30% at 55% 95%, rgba(176,125,84,0.05) 0%, transparent 70%);
+        radial-gradient(ellipse 70% 70% at 50% 50%, transparent 40%, rgba(247,244,239,0.55) 100%),
+        radial-gradient(ellipse 55% 40% at 10% 15%, rgba(176,125,84,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 92% 80%, rgba(139,94,60,0.05) 0%, transparent 70%);
     }
 
-    /* Decorative lines */
-    .deco-line {
-      position: fixed;
-      z-index: 0;
-      pointer-events: none;
-    }
-    .deco-line.tl {
-      top: 2.5rem; left: 2.5rem;
-      width: 80px; height: 80px;
-      border-top: 1px solid var(--border);
-      border-left: 1px solid var(--border);
-    }
-    .deco-line.br {
-      bottom: 2.5rem; right: 2.5rem;
-      width: 80px; height: 80px;
-      border-bottom: 1px solid var(--border);
-      border-right: 1px solid var(--border);
-    }
+    /* Corner brackets */
+    .deco-line { position: fixed; z-index: 0; pointer-events: none; }
+    .deco-line.tl { top: 2.5rem; left: 2.5rem; width: 60px; height: 60px; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+    .deco-line.br { bottom: 2.5rem; right: 2.5rem; width: 60px; height: 60px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); }
 
-    /* ── Wrapper ── */
-    #wrapper {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
-    }
+    /* Wrapper */
+    #wrapper { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
 
-    /* ── Header ── */
+    /* Header */
     #header {
       text-align: center;
-      transition: transform 0.55s cubic-bezier(0.4,0,0.2,1),
-                  opacity 0.45s ease,
-                  filter 0.45s ease;
+      transition: transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.45s ease, filter 0.45s ease;
     }
     #header.is-article-visible {
       transform: scale(0.94) translateY(-1.5rem);
-      opacity: 0.1;
-      filter: blur(4px);
+      opacity: 0.08;
+      filter: blur(5px);
       pointer-events: none;
     }
 
-    .monogram {
-      width: 6rem;
-      height: 6rem;
-      margin: 0 auto 2rem;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .monogram svg {
-      width: 100%;
-      height: 100%;
-      filter: drop-shadow(0 2px 14px rgba(139,94,60,0.2));
-      transition: filter 0.3s ease;
-    }
-    .monogram:hover svg {
-      filter: drop-shadow(0 4px 20px rgba(139,94,60,0.35));
-    }
+    /* Logo */
+    .monogram { width: 6rem; height: 6rem; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; }
+    .monogram svg { width: 100%; height: 100%; filter: drop-shadow(0 2px 14px rgba(139,94,60,0.2)); transition: filter 0.3s ease; }
+    .monogram:hover svg { filter: drop-shadow(0 4px 22px rgba(139,94,60,0.38)); }
 
-    #header h1 {
-      font-family: var(--font-display);
-      font-weight: 400;
-      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
-      letter-spacing: 0.02em;
-      line-height: 1.15;
-      color: var(--fg);
-      margin-bottom: 0.6rem;
-    }
-    #header .tagline {
-      font-family: var(--font-body);
-      font-weight: 300;
-      font-size: 0.78rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-    #header .tagline span {
-      display: inline-block;
-      width: 20px;
-      height: 1px;
-      background: var(--border-strong);
-      vertical-align: middle;
-      margin: 0 0.6rem;
-    }
+    /* Name */
+    #header h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.2rem, 5.5vw, 3.6rem); letter-spacing: 0.02em; line-height: 1.15; color: var(--fg); margin-bottom: 0.5rem; }
+
+    /* Tagline */
+    #header .tagline { font-family: var(--font-body); font-weight: 300; font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.9rem; }
+    #header .tagline span { display: inline-block; width: 18px; height: 1px; background: var(--border-strong); vertical-align: middle; margin: 0 0.6rem; }
+
+    /* Headline */
     #header .headline {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-weight: 400;
-      font-size: clamp(0.88rem, 2vw, 1.05rem);
-      color: var(--accent2);
-      margin-bottom: 2.2rem;
-      letter-spacing: 0.01em;
-      opacity: 0.85;
-      position: relative;
-      display: inline-block;
-      padding: 0 1rem;
+      font-family: var(--font-display); font-style: italic; font-weight: 400;
+      font-size: clamp(0.85rem, 2vw, 1rem); color: var(--accent2);
+      margin-bottom: 2.2rem; letter-spacing: 0.01em;
+      display: inline-block; padding: 0 1.2rem; position: relative;
+      opacity: 0; animation: fadeUp 1s ease 0.4s forwards;
     }
-    #header .headline::before,
-    #header .headline::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      width: 28px;
-      height: 1px;
-      background: var(--border-strong);
-      opacity: 0.6;
-    }
-    #header .headline::before { right: 100%; margin-right: -0.8rem; }
-    #header .headline::after  { left: 100%;  margin-left: -0.8rem; }
+    #header .headline::before, #header .headline::after { content: ''; position: absolute; top: 50%; width: 24px; height: 1px; background: var(--border-strong); opacity: 0.5; }
+    #header .headline::before { right: 100%; }
+    #header .headline::after  { left: 100%; }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 0.85; transform: translateY(0); }
-    }
-    #header .headline { animation: fadeUp 1s ease 0.4s both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 0.9; transform: translateY(0); } }
 
-    /* ── Nav ── */
-    nav {
-      display: flex;
-      gap: 0;
-      justify-content: center;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.5);
-    }
-    nav a {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      padding: 0.7rem 1.5rem;
-      border-right: 1px solid var(--border);
-      transition: all 0.22s ease;
-      position: relative;
-    }
+    /* Nav */
+    nav { display: flex; justify-content: center; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; background: rgba(255,255,255,0.5); }
+    nav a { font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 0.72rem 1.5rem; border-right: 1px solid var(--border); position: relative; transition: all 0.22s ease; }
     nav a:last-child { border-right: none; }
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transition: transform 0.22s ease;
-    }
+    nav a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transition: transform 0.22s ease; }
     nav a:hover { color: var(--accent); background: rgba(139,94,60,0.04); }
     nav a:hover::after { transform: scaleX(1); }
     nav a.active { color: var(--accent); background: rgba(139,94,60,0.06); }
     nav a.active::after { transform: scaleX(1); }
 
-    /* ── Social ── */
-    .social-links {
-      margin-top: 2rem;
-      display: flex;
-      gap: 0.8rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .social-links a {
-      width: 2.6rem;
-      height: 2.6rem;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      transition: all 0.22s ease;
-      position: relative;
-    }
-    .social-links a svg {
-      width: 1.35rem;
-      height: 1.35rem;
-      transition: transform 0.22s ease;
-    }
-    .social-links a:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.13); }
+    /* Social brand icons */
+    .social-links { margin-top: 2rem; display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+    .social-links a { width: 2.6rem; height: 2.6rem; border-radius: 10px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.22s ease; }
+    .social-links a svg { width: 1.35rem; height: 1.35rem; transition: transform 0.22s ease; }
+    .social-links a:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.15); }
     .social-links a:hover svg { transform: scale(1.08); }
+    .s-linkedin { background: #0077B5; }
+    .s-email    { background: #EA4335; }
+    .s-github   { background: #24292e; }
+    .s-pdf      { background: #8b5e3c; }
 
-    /* LinkedIn */
-    .social-links a.s-linkedin { background: #0077B5; }
-    /* GitHub */
-    .social-links a.s-github   { background: #24292e; }
-    /* Email */
-    .social-links a.s-email    { background: #EA4335; }
-    /* PDF */
-    .social-links a.s-pdf      { background: #8b5e3c; }
-
-    /* ── Modal system ── */
-    #main {
-      position: fixed;
-      inset: 0;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
+    /* ── DARK OVERLAY — like Dimension ── */
+    #overlay {
+      position: fixed; inset: 0; z-index: 8;
+      background: rgba(20,16,12,0);
       pointer-events: none;
+      transition: background 0.5s ease;
     }
+    #overlay.active {
+      background: rgba(20,16,12,0.75);
+      pointer-events: all;
+    }
+
+    /* ── ARTICLE PANELS ── */
+    #main { position: fixed; inset: 0; z-index: 10; pointer-events: none; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
 
     article {
       position: absolute;
-      background: var(--panel);
-      backdrop-filter: blur(20px) saturate(1.2);
-      -webkit-backdrop-filter: blur(20px) saturate(1.2);
-      border: 1px solid var(--border-strong);
-      border-radius: 3px;
-      width: min(700px, 100%);
-      max-height: 82vh;
+      width: min(660px, 100%);
+      max-height: 88vh;
       overflow-y: auto;
-      padding: 3rem 3.8rem;
-      transform: translateY(24px) scale(0.98);
+      background: var(--panel);
+      border: 1px solid var(--border-strong);
+      border-radius: 4px;
+      padding: 3rem 3.5rem;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.3), 0 2px 20px rgba(139,94,60,0.12);
       opacity: 0;
+      transform: translateY(2rem) scale(0.98);
       pointer-events: none;
-      transition: transform 0.48s cubic-bezier(0.34,1.4,0.64,1), opacity 0.35s ease;
-      box-shadow: 0 8px 60px rgba(139,94,60,0.08), 0 2px 16px rgba(0,0,0,0.06);
+      transition: opacity 0.42s ease, transform 0.42s cubic-bezier(0.34,1.3,0.64,1);
       scrollbar-width: thin;
       scrollbar-color: var(--border) transparent;
     }
     article::-webkit-scrollbar { width: 3px; }
-    article::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    article::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    article.active { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
 
-    article.active {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-      pointer-events: all;
-    }
+    /* Article content */
+    article h2 { font-family: var(--font-display); font-weight: 400; font-size: 2rem; letter-spacing: 0.02em; color: var(--fg); margin-bottom: 0.25rem; }
+    .subtitle { font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.6rem; }
+    article p { font-size: 0.94rem; line-height: 1.9; color: rgba(26,23,20,0.72); margin-bottom: 1rem; }
+    .divider { width: 2.5rem; height: 1px; background: var(--accent); opacity: 0.35; margin: 1.6rem 0; }
 
-    /* Article typography */
-    article h2 {
-      font-family: var(--font-display);
-      font-weight: 400;
-      font-size: 2rem;
-      letter-spacing: 0.02em;
-      color: var(--fg);
-      margin-bottom: 0.3rem;
-    }
-    .subtitle {
-      font-size: 0.68rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.8rem;
-    }
-    article p {
-      font-size: 0.93rem;
-      line-height: 1.9;
-      color: rgba(26,23,20,0.72);
-      margin-bottom: 1.1rem;
-    }
-    .divider {
-      width: 2.5rem;
-      height: 1px;
-      background: var(--accent);
-      margin: 1.8rem 0;
-      opacity: 0.4;
-    }
-
-    /* Close */
-    .close {
-      position: absolute;
-      top: 1.4rem;
-      right: 1.4rem;
-      width: 1.8rem;
-      height: 1.8rem;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      background: rgba(255,255,255,0.6);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-size: 0.62rem;
-      transition: all 0.2s;
-    }
-    .close:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(139,94,60,0.05);
-    }
+    /* Close button */
+    .close { position: absolute; top: 1.3rem; right: 1.3rem; width: 1.9rem; height: 1.9rem; border-radius: 50%; border: 1px solid var(--border); background: rgba(255,255,255,0.8); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.62rem; transition: all 0.2s; }
+    .close:hover { border-color: var(--accent); color: var(--accent); }
 
     /* Skills */
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 1.2rem 0;
-    }
-    .skill-tag {
-      padding: 0.38rem 0.85rem;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      background: rgba(255,255,255,0.6);
-      transition: all 0.18s;
-    }
-    .skill-tag:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(139,94,60,0.05);
-    }
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.1rem 0; }
+    .skill-tag { padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 20px; font-size: 0.7rem; letter-spacing: 0.07em; color: var(--muted); background: rgba(255,255,255,0.65); transition: all 0.18s; }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
 
     /* Projects */
-    .project-list { margin: 1.5rem 0; }
-    .project-item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: start;
-      gap: 1rem;
-      padding: 1.4rem 0;
-      border-bottom: 1px solid var(--border);
-      transition: all 0.2s;
-    }
+    .project-list { margin: 1.4rem 0; }
+    .project-item { display: grid; grid-template-columns: 1fr auto; align-items: start; gap: 1rem; padding: 1.3rem 0; border-bottom: 1px solid var(--border); transition: padding-left 0.2s; }
     .project-item:first-child { border-top: 1px solid var(--border); }
-    .project-item:hover { padding-left: 0.5rem; }
-    .proj-tag {
-      font-size: 0.62rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 0.35rem;
-    }
-    .project-item h3 {
-      font-family: var(--font-display);
-      font-weight: 400;
-      font-size: 1.05rem;
-      color: var(--fg);
-      margin-bottom: 0.3rem;
-    }
-    .project-item p {
-      font-size: 0.84rem;
-      line-height: 1.65;
-      color: var(--muted);
-      margin: 0;
-    }
-    .proj-arrow {
-      color: var(--border-strong);
-      font-size: 0.7rem;
-      padding-top: 0.3rem;
-      transition: all 0.2s;
-    }
-    .project-item:hover .proj-arrow {
-      color: var(--accent);
-      transform: translateX(3px);
-    }
+    .project-item:hover { padding-left: 0.4rem; }
+    .proj-tag { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.3rem; }
+    .project-item h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.05rem; color: var(--fg); margin-bottom: 0.28rem; }
+    .project-item p { font-size: 0.83rem; line-height: 1.65; color: var(--muted); margin: 0; }
+    .proj-arrow { color: var(--border-strong); font-size: 0.7rem; padding-top: 0.3rem; transition: all 0.2s; }
+    .project-item:hover .proj-arrow { color: var(--accent); transform: translateX(3px); }
 
-    /* Resume / Timeline */
-    .tl-section-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 1.8rem 0 1rem;
-    }
+    /* Timeline */
+    .tl-section-label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin: 1.8rem 0 1rem; }
     .timeline { position: relative; }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 6px;
-      bottom: 0;
-      width: 1px;
-      background: var(--border);
-    }
-    .tl-item {
-      padding: 0 0 1.8rem 1.6rem;
-      position: relative;
-    }
-    .tl-item::before {
-      content: '';
-      position: absolute;
-      left: -3px;
-      top: 6px;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 2px solid var(--bg);
-      box-shadow: 0 0 0 1px var(--accent);
-    }
-    .tl-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 0.3rem;
-    }
-    .tl-item h3 {
-      font-family: var(--font-display);
-      font-weight: 400;
-      font-size: 1rem;
-      color: var(--fg);
-    }
-    .tl-year {
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      background: rgba(139,94,60,0.08);
-      padding: 0.2rem 0.5rem;
-      border-radius: 20px;
-      white-space: nowrap;
-    }
-    .tl-org {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 0.4rem;
-    }
-    .tl-item p {
-      font-size: 0.84rem;
-      line-height: 1.65;
-      color: var(--muted);
-      margin: 0;
-    }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 6px; bottom: 0; width: 1px; background: var(--border); }
+    .tl-item { padding: 0 0 1.8rem 1.6rem; position: relative; }
+    .tl-item::before { content: ''; position: absolute; left: -3px; top: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 1px var(--accent); }
+    .tl-meta { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.3rem; }
+    .tl-item h3 { font-family: var(--font-display); font-weight: 400; font-size: 1rem; color: var(--fg); }
+    .tl-year { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); background: rgba(139,94,60,0.08); padding: 0.2rem 0.5rem; border-radius: 20px; white-space: nowrap; }
+    .tl-org { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.4rem; }
+    .tl-item p { font-size: 0.84rem; line-height: 1.65; color: var(--muted); margin: 0; }
 
-    /* Contact form */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.8rem;
-      margin-top: 1.5rem;
-    }
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 1.4rem; }
     .contact-grid .full { grid-column: 1 / -1; }
-    .contact-grid input,
-    .contact-grid textarea {
-      background: rgba(255,255,255,0.7);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 0.8rem 1rem;
-      color: var(--fg);
-      font-family: var(--font-body);
-      font-size: 0.86rem;
-      width: 100%;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .contact-grid input:focus,
-    .contact-grid textarea:focus { border-color: var(--accent); }
-    .contact-grid input::placeholder,
-    .contact-grid textarea::placeholder { color: var(--muted); }
+    .contact-grid input, .contact-grid textarea { background: rgba(255,255,255,0.75); border: 1px solid var(--border); border-radius: 2px; padding: 0.8rem 1rem; color: var(--fg); font-family: var(--font-body); font-size: 0.86rem; width: 100%; outline: none; transition: border-color 0.2s; }
+    .contact-grid input:focus, .contact-grid textarea:focus { border-color: var(--accent); }
+    .contact-grid input::placeholder, .contact-grid textarea::placeholder { color: var(--muted); }
     .contact-grid textarea { resize: vertical; min-height: 100px; }
-    .btn {
-      margin-top: 0.4rem;
-      padding: 0.8rem 2.2rem;
-      background: var(--accent);
-      border: 1px solid var(--accent);
-      color: #fff;
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: all 0.22s;
-    }
+    .btn { margin-top: 0.4rem; padding: 0.8rem 2.2rem; background: var(--accent); border: 1px solid var(--accent); color: #fff; font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: all 0.22s; }
     .btn:hover { background: var(--accent2); border-color: var(--accent2); }
-    .btn-ghost {
-      background: transparent;
-      color: var(--accent);
-    }
-    .btn-ghost:hover { background: rgba(139,94,60,0.08); color: var(--accent); }
+    .btn-ghost { background: transparent; color: var(--accent); }
+    .btn-ghost:hover { background: rgba(139,94,60,0.08); }
 
-    /* Overlay */
-    #overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 5;
-      background: rgba(247,244,239,0);
-      pointer-events: none;
-      transition: background 0.4s;
-    }
-    #overlay.active {
-      background: rgba(247,244,239,0.55);
-      pointer-events: all;
-      backdrop-filter: blur(2px);
-    }
-
-    /* Footer */
-    #footer {
-      position: fixed;
-      bottom: 1.4rem;
-      left: 0; right: 0;
-      text-align: center;
-      font-size: 0.64rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(26,23,20,0.2);
-      z-index: 1;
-    }
+    #footer { position: fixed; bottom: 1.4rem; left: 0; right: 0; text-align: center; font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(26,23,20,0.2); z-index: 1; pointer-events: none; }
 
     @media (max-width: 580px) {
       article { padding: 2rem 1.4rem; }
-      nav a { padding: 0.7rem 1rem; }
+      nav a { padding: 0.7rem 0.9rem; font-size: 0.62rem; letter-spacing: 0.1em; }
       .contact-grid { grid-template-columns: 1fr; }
       .contact-grid .full { grid-column: 1; }
     }
@@ -579,95 +222,67 @@
 
 <div id="wrapper">
   <div id="header">
+
     <div class="monogram">
       <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Outer ring -->
         <circle cx="48" cy="48" r="46" stroke="#8b5e3c" stroke-width="0.8" opacity="0.4"/>
-        <!-- Inner ring -->
         <circle cx="48" cy="48" r="39" stroke="#8b5e3c" stroke-width="0.5" opacity="0.25"/>
-        <!-- Warm fill -->
-        <circle cx="48" cy="48" r="38" fill="rgba(251,248,243,0.85)"/>
-        <!-- Decorative 8-point star / compass rose -->
-        <g transform="translate(48,48)" stroke="#8b5e3c" stroke-width="0.7" opacity="0.35">
+        <circle cx="48" cy="48" r="38" fill="rgba(251,248,243,0.9)"/>
+        <g transform="translate(48,48)" stroke="#8b5e3c" stroke-width="0.6" opacity="0.3">
           <line x1="0" y1="-34" x2="0" y2="34"/>
           <line x1="-34" y1="0" x2="34" y2="0"/>
           <line x1="-24" y1="-24" x2="24" y2="24"/>
           <line x1="24" y1="-24" x2="-24" y2="24"/>
         </g>
-        <!-- Small diamond center ornament -->
         <polygon points="48,36 52,48 48,60 44,48" fill="none" stroke="#b07d54" stroke-width="0.9" opacity="0.5"/>
-        <!-- Elegant S letterform built from paths -->
-        <text x="48" y="56" text-anchor="middle"
-          font-family="Playfair Display, Georgia, serif"
-          font-size="26" font-weight="400"
-          fill="#8b5e3c" letter-spacing="2">S</text>
-        <!-- Top dot ornament -->
+        <text x="48" y="57" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="26" font-weight="400" fill="#8b5e3c" letter-spacing="2">S</text>
         <circle cx="48" cy="14" r="1.8" fill="#b07d54" opacity="0.6"/>
-        <!-- Bottom dot ornament -->
         <circle cx="48" cy="82" r="1.8" fill="#b07d54" opacity="0.6"/>
-        <!-- Side dot ornaments -->
         <circle cx="14" cy="48" r="1.2" fill="#8b5e3c" opacity="0.4"/>
         <circle cx="82" cy="48" r="1.2" fill="#8b5e3c" opacity="0.4"/>
-        <!-- Corner diamonds -->
-        <polygon points="48,5 50,8 48,11 46,8"  fill="#b07d54" opacity="0.45"/>
+        <polygon points="48,5 50,8 48,11 46,8" fill="#b07d54" opacity="0.45"/>
         <polygon points="48,85 50,88 48,91 46,88" fill="#b07d54" opacity="0.45"/>
       </svg>
     </div>
+
     <h1>Shruti Singh</h1>
     <p class="tagline">Product <span></span> Strategy</p>
     <p class="headline">Turned debugging code into debugging user problems. Now I do both.</p>
+
     <nav>
-      <a href="#about" class="nav-link">About</a>
+      <a href="#about"    class="nav-link">About</a>
       <a href="#projects" class="nav-link">Projects</a>
-      <a href="#resume" class="nav-link">Résumé</a>
-      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#resume"   class="nav-link">Résumé</a>
+      <a href="#contact"  class="nav-link">Contact</a>
     </nav>
+
     <div class="social-links">
-      <!-- LinkedIn -->
       <a href="https://linkedin.com/in/shrutisingh" class="s-linkedin" title="LinkedIn" target="_blank">
-        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
       </a>
-      <!-- Email / Gmail -->
-      <a href="mailto:hello@shrutisingh.com" class="s-email" title="Email" target="_blank">
-        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
-        </svg>
+      <a href="/cdn-cgi/l/email-protection#f49c9198989bb4879c8681809d879d9a939cda979b99" class="s-email" title="Email">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
       </a>
-      <!-- GitHub -->
       <a href="https://github.com/shrutisingh2397-cell" class="s-github" title="GitHub" target="_blank">
-        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="white"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
       </a>
-      <!-- PDF Resume -->
-      <a href="#" class="s-pdf" title="Resume PDF" target="_blank">
-        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8.5 15.5c-.3 0-.5-.1-.7-.2l.2-.7c.1.1.3.1.4.1.4 0 .6-.3.6-.8v-2.4H10v2.4c0 1-.5 1.6-1.5 1.6zm3.5 0h-1v-4h1.5c.9 0 1.5.5 1.5 1.3s-.6 1.2-1.5 1.2H12v1.5zm3.5 0h-1v-4h1c1.1 0 1.8.7 1.8 2s-.8 2-1.8 2zm-3.5-2.5h.4c.4 0 .6-.2.6-.5s-.2-.5-.6-.5H12v1zm3.5 1.7c.5 0 .8-.4.8-1.2s-.3-1.3-.8-1.3H15v2.5h.5z"/>
-        </svg>
+      <a href="#" class="s-pdf" title="Resume PDF">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM9 17.5c-.3 0-.5-.1-.6-.2l.1-.6c.1.1.3.2.5.2.3 0 .5-.2.5-.7v-2.7H10v2.7c0 .9-.4 1.3-1 1.3zm2.5 0H10.5v-4H12c.9 0 1.4.5 1.4 1.2 0 .8-.5 1.2-1.4 1.2h-.5v1.6zm3.5 0H14v-4h1c1 0 1.7.6 1.7 2s-.7 2-1.7 2zm-3.5-2.4h.4c.3 0 .5-.1.5-.4s-.2-.5-.5-.5H11v.9zm3.5 1.6c.5 0 .8-.4.8-1.2s-.3-1.2-.8-1.2H15v2.4h.5z"/></svg>
       </a>
     </div>
+
   </div>
 </div>
 
 <div id="main">
 
-  <!-- About -->
+  <!-- ABOUT -->
   <article id="about">
     <button class="close"><i class="fas fa-times"></i></button>
     <h2>About</h2>
     <div class="subtitle">A little about me</div>
-    <p>
-      I turned debugging code into debugging user problems — and now I do both. 
-      I'm <strong>Shruti Singh</strong>, a product strategist who started in engineering 
-      and never stopped asking <em style="color:var(--accent2)">"but why does the user need this?"</em>
-    </p>
-    <p>
-      I thrive in ambiguous problem spaces, turning complex challenges into clear product direction.
-      Whether it's defining a 0→1 strategy or scaling an existing product, I bring both analytical 
-      rigor and creative intuition to the table.
-    </p>
+    <p>I turned debugging code into debugging user problems — and now I do both. I'm <strong>Shruti Singh</strong>, a product strategist who started in engineering and never stopped asking <em style="color:var(--accent2)">"but why does the user need this?"</em></p>
+    <p>I thrive in ambiguous problem spaces, turning complex challenges into clear product direction. Whether it's defining a 0→1 strategy or scaling an existing product, I bring both analytical rigor and creative intuition to the table.</p>
     <div class="divider"></div>
     <div class="subtitle">Areas of Expertise</div>
     <div class="skills-grid">
@@ -678,26 +293,22 @@
       <div class="skill-tag">Data Analytics</div>
       <div class="skill-tag">A/B Testing</div>
       <div class="skill-tag">Stakeholder Mgmt</div>
-      <div class="skill-tag">OKRs & Metrics</div>
+      <div class="skill-tag">OKRs &amp; Metrics</div>
       <div class="skill-tag">SQL</div>
       <div class="skill-tag">Figma</div>
       <div class="skill-tag">Competitive Intel</div>
       <div class="skill-tag">Agile / Scrum</div>
     </div>
     <div class="divider"></div>
-    <p>
-      Outside of work I enjoy reading about behavioral economics, long hikes, and finding the 
-      best chai in every city I visit. Always open to interesting conversations — feel free to say hi.
-    </p>
+    <p>Outside of work I enjoy reading about behavioral economics, long hikes, and finding the best chai in every city I visit. Always open to interesting conversations — feel free to say hi.</p>
   </article>
 
-  <!-- Projects -->
+  <!-- PROJECTS -->
   <article id="projects">
     <button class="close"><i class="fas fa-times"></i></button>
     <h2>Projects</h2>
     <div class="subtitle">Selected work</div>
     <p>A curated set of initiatives I've led or contributed to across product and strategy.</p>
-
     <div class="project-list">
       <div class="project-item">
         <div>
@@ -732,79 +343,54 @@
         <div class="proj-arrow"><i class="fas fa-arrow-right"></i></div>
       </div>
     </div>
-    <p style="font-size:0.8rem; color:var(--muted); margin-top:0.8rem">
-      More detailed case studies available on request.
-    </p>
+    <p style="font-size:0.8rem;color:var(--muted);margin-top:0.6rem">More detailed case studies available on request.</p>
   </article>
 
-  <!-- Résumé -->
+  <!-- RESUME -->
   <article id="resume">
     <button class="close"><i class="fas fa-times"></i></button>
     <h2>Résumé</h2>
     <div class="subtitle">Experience &amp; Education</div>
-
     <div class="tl-section-label">Experience</div>
     <div class="timeline">
       <div class="tl-item">
-        <div class="tl-meta">
-          <h3>Senior Product Manager</h3>
-          <span class="tl-year">2022 – Present</span>
-        </div>
+        <div class="tl-meta"><h3>Senior Product Manager</h3><span class="tl-year">2022 – Present</span></div>
         <div class="tl-org">Company Name · Location</div>
         <p>Led cross-functional teams of 12 to define and execute product strategy. Owned the full roadmap for a core growth surface serving 5M+ users.</p>
       </div>
       <div class="tl-item">
-        <div class="tl-meta">
-          <h3>Product Manager</h3>
-          <span class="tl-year">2020 – 2022</span>
-        </div>
+        <div class="tl-meta"><h3>Product Manager</h3><span class="tl-year">2020 – 2022</span></div>
         <div class="tl-org">Previous Company · Location</div>
         <p>Managed discovery, prioritization, and delivery cycles for B2C and B2B product lines. Partnered closely with design, data, and engineering.</p>
       </div>
       <div class="tl-item">
-        <div class="tl-meta">
-          <h3>Strategy Analyst</h3>
-          <span class="tl-year">2018 – 2020</span>
-        </div>
+        <div class="tl-meta"><h3>Strategy Analyst</h3><span class="tl-year">2018 – 2020</span></div>
         <div class="tl-org">Consulting Firm · Location</div>
         <p>Delivered strategic recommendations for Fortune 500 clients across tech, retail, and financial services verticals.</p>
       </div>
     </div>
-
     <div class="tl-section-label">Education</div>
     <div class="timeline">
       <div class="tl-item">
-        <div class="tl-meta">
-          <h3>MBA</h3>
-          <span class="tl-year">2016 – 2018</span>
-        </div>
+        <div class="tl-meta"><h3>MBA</h3><span class="tl-year">2016 – 2018</span></div>
         <div class="tl-org">University Name · City</div>
-        <p>Concentration in Strategy & Innovation. Case competition finalist.</p>
+        <p>Concentration in Strategy &amp; Innovation. Case competition finalist.</p>
       </div>
       <div class="tl-item">
-        <div class="tl-meta">
-          <h3>B.Tech, Computer Science</h3>
-          <span class="tl-year">2012 – 2016</span>
-        </div>
+        <div class="tl-meta"><h3>B.Tech, Computer Science</h3><span class="tl-year">2012 – 2016</span></div>
         <div class="tl-org">University Name · City</div>
         <p>Dean's List. Minor in Economics.</p>
       </div>
     </div>
-
-    <button class="btn btn-ghost" style="margin-top:0.8rem">
-      <i class="fas fa-download" style="margin-right:0.5rem"></i>Download CV
-    </button>
+    <button class="btn btn-ghost" style="margin-top:0.8rem"><i class="fas fa-download" style="margin-right:0.5rem"></i>Download CV</button>
   </article>
 
-  <!-- Contact -->
+  <!-- CONTACT -->
   <article id="contact">
     <button class="close"><i class="fas fa-times"></i></button>
     <h2>Contact</h2>
     <div class="subtitle">Let's connect</div>
-    <p>
-      Interested in collaborating, have a role in mind, or just want to talk product?
-      I'd love to hear from you.
-    </p>
+    <p>Interested in collaborating, have a role in mind, or just want to talk product? I'd love to hear from you.</p>
     <div class="contact-grid">
       <input type="text" placeholder="Your name" />
       <input type="email" placeholder="Email address" />
@@ -813,10 +399,7 @@
       <div class="full"><button class="btn">Send Message</button></div>
     </div>
     <div class="divider"></div>
-    <p style="font-size:0.82rem">
-      Or email me directly at
-      <a href="/cdn-cgi/l/email-protection#8de5e8e1e1e2cdfee5fff8f9e4fee4e3eae5a3eee2e0" style="color:var(--accent); text-decoration:none; border-bottom:1px solid var(--border)"><span class="__cf_email__" data-cfemail="5038353c3c3f1023382225243923393e37387e333f3d">[email&#160;protected]</span></a>
-    </p>
+    <p style="font-size:0.82rem">Or email me at <a href="/cdn-cgi/l/email-protection#8ee6ebe2e2e1cefde6fcfbfae7fde7e0e9e6a0ede1e3" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--border)"><span class="__cf_email__" data-cfemail="84ece1e8e8ebc4f7ecf6f1f0edf7edeae3ecaae7ebe9">[email&#160;protected]</span></a></p>
   </article>
 
 </div>
@@ -824,23 +407,25 @@
 <div id="footer">Shruti Singh &nbsp;·&nbsp; Product &amp; Strategy</div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const header  = document.getElementById('header');
-  const overlay = document.getElementById('overlay');
+  const header   = document.getElementById('header');
+  const overlay  = document.getElementById('overlay');
   const navLinks = document.querySelectorAll('.nav-link');
   let current = null;
 
-  function open(id) {
-    close();
+  function openArticle(id) {
+    closeArticle();
     const art = document.getElementById(id);
     if (!art) return;
     current = art;
-    art.classList.add('active');
-    header.classList.add('is-article-visible');
-    overlay.classList.add('active');
+    requestAnimationFrame(() => {
+      art.classList.add('active');
+      header.classList.add('is-article-visible');
+      overlay.classList.add('active');
+    });
     navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
   }
 
-  function close() {
+  function closeArticle() {
     if (current) { current.classList.remove('active'); current = null; }
     header.classList.remove('is-article-visible');
     overlay.classList.remove('active');
@@ -851,8 +436,8 @@
     l.addEventListener('click', e => {
       e.preventDefault();
       const id = l.getAttribute('href').slice(1);
-      current && current.id === id ? close() : open(id);
+      current && current.id === id ? closeArticle() : openArticle(id);
     });
   });
 
-  docum
+  document.querySelectorAll('.close').forE
